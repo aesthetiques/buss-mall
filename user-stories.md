@@ -4,12 +4,12 @@
 * Calculate totals
 
 ###Developer:
-1. Add event listener for clicks on each picture.
-2. Use object oriented programming to build site:
-* properties of name for image
-* file path
-* number of times shown
-* number of times clicked
+* Add event listener for clicks on each picture.
+* Use object oriented programming to build site:
+  - properties of name for image
+  - file path
+  - number of times shown
+  - number of times clicked
 
 ###Focus Groups:
 * HTML Semantics
