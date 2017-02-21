@@ -79,3 +79,14 @@ function generateImg(){
 }
 
 previousImgs = [leftIndex, centerIndex, rightIndex];
+
+
+
+//
+// event LISTENERS
+fucntion handlePicturesOnClick(){
+
+  if(event.target.id === 'pics'){
+    
+  }
+}
