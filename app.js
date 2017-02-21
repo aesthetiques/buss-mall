@@ -2,7 +2,7 @@
 //Worked with Anna and Kayla for all of this
 
 //get access to html elements
-var picContainer = document.getElementsById('pic-container');
+var picContainer = document.getElementById('pic-container');
 var left = document.getElementById('left');
 var right = document.getElementById('center');
 var right = document.getElementById('right');
@@ -23,17 +23,20 @@ var productNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'tauntaun
   'usb', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'water-can'];
 
 //insert product constructor
-function Product(name) {
+function Product(name, id, path) {
   this.name = name;
+  this.productID = id;
   this.views = 0;
   this.clicks = 0;
   this.path = 'img/' + name + '.jpg';
 }
 //Create all products and push them to their array
-for(var i = 0; i < productNames.length; i++){
-  var name = picNames[i];
-  var newItem = new Product(name);
-  allProducts.push(newItem);
+function createProducts(){
+  for(var i = 0; i < productNames.length; i++){
+    var name = productNames[i];
+    var newItem = new Product(name);
+    allProducts.push(newItem);
+  }
 }
 //
 //
@@ -59,7 +62,6 @@ function generateImg(){
   while(previousImgs.includes(leftIndex)){
     var leftIndex = randomNum();
     console.log('new left:' + leftIndex);
-
   }
   //end first
 
@@ -76,17 +78,44 @@ function generateImg(){
     console.log('new right:' + rightIndex);
   }
   //end thirdImg
+  previousImgs = [leftIndex, centerIndex, rightIndex];
+  //creation of first images
+  //left img
+  return previousImgs;
 }
 
-previousImgs = [leftIndex, centerIndex, rightIndex];
-
-
-
-//
-// event LISTENERS
-fucntion handlePicturesOnClick(){
-
-  if(event.target.id === 'pics'){
-    
-  }
+//on-click listener
+picContainer.addEventListener('click', handlePicturesOnClick);
+// event LISTENER for one box that contains all 3 images
+function handlePicturesOnClick(){
+  event.preventDefault(); //stops page from reloading/sending data to server - the default setting for submission
+  event.stopPropagation(); //stops bubbling, stop capturing
+  // if(leftImg || rightImg || centerImg){
+  leftImg.remove();
+  centerImg.remove();
+  rightImg.remove();
+  // }
+  //at end of the event listener function, re-run the function to generate images
+  generateImg();
 }
+
+createProducts();
+generateImg();
+
+console.log(previousImgs);
+var leftImg = document.createElement('img');
+// leftImg.setAttribute('id',[leftImg[i].id]);
+leftImg.setAttribute('src',[allProducts[previousImgs[0]].path]);
+leftImg.setAttribute('alt',[allProducts[previousImgs[0]].name]);
+picContainer.appendChild(leftImg);
+//center img
+var centerImg = document.createElement('img');
+centerImg.setAttribute('src',[allProducts[previousImgs[1]].path]);
+centerImg.setAttribute('alt',[allProducts[previousImgs[1]].name]);
+picContainer.appendChild(centerImg);
+//right img
+var rightImg = document.createElement('img');
+rightImg.setAttribute('src',[allProducts[previousImgs[2]].path]);
+rightImg.setAttribute('alt',[allProducts[previousImgs[2]].name]);
+picContainer.appendChild(rightImg);
+//end starting img creation
