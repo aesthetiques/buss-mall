@@ -6,6 +6,7 @@ var picContainer = document.getElementById('pic-container');
 var left = document.getElementById('left');
 var center = document.getElementById('center');
 var right = document.getElementById('right');
+var listShit = document.getElementById('list');
 
 var allProducts = [];
   // './img/bag.jpg', './img/banana.jpg', './img/bathroom.jpg', './img/boots.jpg',
