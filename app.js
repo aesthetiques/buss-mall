@@ -122,13 +122,14 @@ function handlePicturesOnClick(event){
   // event.stopPropagation(); //stops bubbling, stop capturing
   picContainer.innerHTML = '';
   totalClicks += 1;
-  if(totalClicks === 25){
-    picContainer.removeEventListener();
-    for(var q = 0; q < allProducts.length; q++){
-
-    }
-  }
 
   console.log('Total clicks:' + totalClicks);
   generateImg();
+}
+//GET THIS SHIT INTO A FUNCTION TO DELETE EVENT LISTENER AND APPENT LI ELEMENTS TO THE UL I MADE
+if(totalClicks === 25){
+  picContainer.removeEventListener();
+  for(var q = 0; q < allProducts.length; q++){
+
+  }
 }
