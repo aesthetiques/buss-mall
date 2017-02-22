@@ -4,7 +4,7 @@
 //get access to html elements
 var picContainer = document.getElementById('pic-container');
 var left = document.getElementById('left');
-var right = document.getElementById('center');
+var center = document.getElementById('center');
 var right = document.getElementById('right');
 
 var allProducts = [];
@@ -81,41 +81,37 @@ function generateImg(){
   previousImgs = [leftIndex, centerIndex, rightIndex];
   //creation of first images
   //left img
-  return previousImgs;
+  console.log(previousImgs);
+  var leftImg = document.createElement('img');
+  // leftImg.setAttribute('id',[leftImg[i].id]);
+  leftImg.setAttribute('src',[allProducts[previousImgs[0]].path]);
+  leftImg.setAttribute('alt',[allProducts[previousImgs[0]].name]);
+  picContainer.appendChild(leftImg);
+  //center img
+  var centerImg = document.createElement('img');
+  centerImg.setAttribute('src',[allProducts[previousImgs[1]].path]);
+  centerImg.setAttribute('alt',[allProducts[previousImgs[1]].name]);
+  picContainer.appendChild(centerImg);
+  //right img
+  var rightImg = document.createElement('img');
+  rightImg.setAttribute('src',[allProducts[previousImgs[2]].path]);
+  rightImg.setAttribute('alt',[allProducts[previousImgs[2]].name]);
+  picContainer.appendChild(rightImg);
+  //end starting img creation
 }
+// return previousImgs;
+
+createProducts();
+generateImg();
 
 //on-click listener
 picContainer.addEventListener('click', handlePicturesOnClick);
 // event LISTENER for one box that contains all 3 images
 function handlePicturesOnClick(){
   event.preventDefault(); //stops page from reloading/sending data to server - the default setting for submission
-  event.stopPropagation(); //stops bubbling, stop capturing
-  // if(leftImg || rightImg || centerImg){
-  leftImg.remove();
-  centerImg.remove();
-  rightImg.remove();
-  // }
-  //at end of the event listener function, re-run the function to generate images
+  // event.stopPropagation(); //stops bubbling, stop capturing
+  picContainer.innerHTML = '';
+  totalClicks += 1;
+  console.log('Total clicks:' + totalClicks);
   generateImg();
 }
-
-createProducts();
-generateImg();
-
-console.log(previousImgs);
-var leftImg = document.createElement('img');
-// leftImg.setAttribute('id',[leftImg[i].id]);
-leftImg.setAttribute('src',[allProducts[previousImgs[0]].path]);
-leftImg.setAttribute('alt',[allProducts[previousImgs[0]].name]);
-picContainer.appendChild(leftImg);
-//center img
-var centerImg = document.createElement('img');
-centerImg.setAttribute('src',[allProducts[previousImgs[1]].path]);
-centerImg.setAttribute('alt',[allProducts[previousImgs[1]].name]);
-picContainer.appendChild(centerImg);
-//right img
-var rightImg = document.createElement('img');
-rightImg.setAttribute('src',[allProducts[previousImgs[2]].path]);
-rightImg.setAttribute('alt',[allProducts[previousImgs[2]].name]);
-picContainer.appendChild(rightImg);
-//end starting img creation
