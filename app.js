@@ -86,16 +86,19 @@ function generateImg(){
   // leftImg.setAttribute('id',[leftImg[i].id]);
   leftImg.setAttribute('src',[allProducts[previousImgs[0]].path]);
   leftImg.setAttribute('alt',[allProducts[previousImgs[0]].name]);
+  // leftImg.setAttribute('id',[allProducts[previousImgs[0]].name]);
   picContainer.appendChild(leftImg);
   //center img
   var centerImg = document.createElement('img');
   centerImg.setAttribute('src',[allProducts[previousImgs[1]].path]);
   centerImg.setAttribute('alt',[allProducts[previousImgs[1]].name]);
+  // leftImg.setAttribute('id',[allProducts[previousImgs[1]].name]);
   picContainer.appendChild(centerImg);
   //right img
   var rightImg = document.createElement('img');
   rightImg.setAttribute('src',[allProducts[previousImgs[2]].path]);
   rightImg.setAttribute('alt',[allProducts[previousImgs[2]].name]);
+  // leftImg.setAttribute('id',[allProducts[previousImgs[2]].name]);
   picContainer.appendChild(rightImg);
   //end starting img creation
 }
@@ -107,11 +110,25 @@ generateImg();
 //on-click listener
 picContainer.addEventListener('click', handlePicturesOnClick);
 // event LISTENER for one box that contains all 3 images
-function handlePicturesOnClick(){
+function handlePicturesOnClick(event){
+  console.log(event.target.alt);
+  for(var p = 0; p < allProducts.length; p++){
+    if(event.target.alt === allProducts[p].name){
+      allProducts[p].clicks += 1;
+    }
+  }
+
   event.preventDefault(); //stops page from reloading/sending data to server - the default setting for submission
   // event.stopPropagation(); //stops bubbling, stop capturing
   picContainer.innerHTML = '';
   totalClicks += 1;
+  if(totalClicks === 25){
+    picContainer.removeEventListener();
+    for(var q = 0; q < allProducts.length; q++){
+
+    }
+  }
+
   console.log('Total clicks:' + totalClicks);
   generateImg();
 }
