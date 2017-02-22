@@ -6,7 +6,7 @@ var picContainer = document.getElementById('pic-container');
 var left = document.getElementById('left');
 var center = document.getElementById('center');
 var right = document.getElementById('right');
-var listShit = document.getElementById('list');
+var listResults = document.getElementById('list');
 
 var allProducts = [];
   // './img/bag.jpg', './img/banana.jpg', './img/bathroom.jpg', './img/boots.jpg',
@@ -112,25 +112,48 @@ generateImg();
 picContainer.addEventListener('click', handlePicturesOnClick);
 // event LISTENER for one box that contains all 3 images
 function handlePicturesOnClick(event){
+  // event.preventDefault(); //stops page from reloading/sending data to server - the default setting for submission
+  // event.stopPropagation(); //stops bubbling, stop capturing
+
   console.log(event.target.alt);
   for(var p = 0; p < allProducts.length; p++){
     if(event.target.alt === allProducts[p].name){
       allProducts[p].clicks += 1;
+      totalClicks += 1;
     }
   }
 
   event.preventDefault(); //stops page from reloading/sending data to server - the default setting for submission
   // event.stopPropagation(); //stops bubbling, stop capturing
   picContainer.innerHTML = '';
-  totalClicks += 1;
 
   console.log('Total clicks:' + totalClicks);
+  if(totalClicks < maxClicks){
+    for(var q = 0; q < allProducts.length; q++){
+      var objectsToPrint = allProducts[q];
+      var tagToPrintTo = document.createElement('li');
+      tagToPrintTo.textContent = allProducts[q].name + ': ' + allProducts[q].clicks;
+      listResults.appendChild(tagToPrintTo);
+      console.log(objectsToPrint);
+    }
+  } else{
+    picContainer.removeEventListener('click', handlePicturesOnClick);
+  }
+
   generateImg();
 }
-//GET THIS SHIT INTO A FUNCTION TO DELETE EVENT LISTENER AND APPENT LI ELEMENTS TO THE UL I MADE
-if(totalClicks === 25){
-  picContainer.removeEventListener();
-  for(var q = 0; q < allProducts.length; q++){
 
-  }
-}
+//GET THESE RESULTS INTO A FUNCTION TO DELETE EVENT LISTENER AND APPENT LI ELEMENTS TO THE UL I MADE
+// function createList(){
+// for(var q = 0; q < allProducts.length; q++){
+// if(totalClicks < maxClicks){
+//     var objectsToPrint = allProducts[q];
+//     var objectsToPrintToo = document.createElement('li');
+//     objectsToPrintToo.textContent = objectsToPrint + ': ' + objectsToPrint.clicks;
+//     listResults.appendChild(objectsToPrintToo);
+//     console.log(objectsToPrint);
+//   }
+// } else{
+//   picContainer.removeEventListener('click', handlePicturesOnClick);
+// }
+// }
