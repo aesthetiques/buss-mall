@@ -26,6 +26,12 @@ var productNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'tauntaun
   'wine-glass', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'unicorn',
   'usb', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'water-can'];
 
+//save to local saveProductsToLocalStorage
+function saveProductsToLocalStorage(allProducts){
+  localStorage.allProducts = JSON.stringify(allProducts);
+  console.log('Saved to local storage');
+}
+
 //insert product constructor
 function Product(name, id, path) {
   this.name = name;
@@ -163,6 +169,7 @@ function handlePicturesOnClick(event){
       tagToPrintTo.textContent = allProducts[q].name + ': ' + allProducts[q].clicks;
       listResults.appendChild(tagToPrintTo);
       picContainer.removeEventListener('click', handlePicturesOnClick);
+      saveProductsToLocalStorage(allProducts);
     }
   }
   generateImg();
