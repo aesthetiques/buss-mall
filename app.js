@@ -126,6 +126,7 @@ function handlePicturesOnClick(event){
   event.preventDefault(); //stops page from reloading/sending data to server - the default setting for submission
   // event.stopPropagation(); //stops bubbling, stop capturing
   picContainer.innerHTML = '';
+  listResults.innerHTML = '';
 
   console.log('Total clicks:' + totalClicks);
   if(totalClicks < maxClicks){
