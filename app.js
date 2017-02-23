@@ -47,7 +47,8 @@ Product.prototype.avgClicks = function(){
   this.percentage = percentage;
 };
 
-//Create all products and push them to their array
+// Create all products and push them to their array
+
 function createProducts(){
   for(var i = 0; i < productNames.length; i++){
     var name = productNames[i];
@@ -55,8 +56,15 @@ function createProducts(){
     allProducts.push(newItem);
   }
 }
+
+if(localStorage.allProducts){
+  allProducts = JSON.parse(localStorage.allProducts);
+}else{
+  createProducts();
+}
 //
 //
+
 //RNG
 function randomNum(){
   return Math.floor(Math.random() * productNames.length);
@@ -101,28 +109,34 @@ function generateImg(){
   //left img
   console.log(previousImgs);
   var leftImg = document.createElement('img');
-  allProducts[previousImgs[0]].percentage += 1;
   allProducts[previousImgs[0]].views += 1;
-  previousShown.push(allProducts[previousImgs[0]].views += 1);
-  percentageData.push(allProducts[previousImgs[0]]);
+  // console.log(allProducts[previousImgs[0]]);
+  // allProducts[previousImgs[0]].avgClicks();
+  // console.log(allProducts[previousImgs[0]].percentage);
+  // previousShown.push(allProducts[previousImgs[0]].views += 1);
+  // percentageData.push(allProducts[previousImgs[0]]);
   leftImg.setAttribute('src',[allProducts[previousImgs[0]].path]);
   leftImg.setAttribute('alt',[allProducts[previousImgs[0]].name]);
   picContainer.appendChild(leftImg);
   //center img
   var centerImg = document.createElement('img');
-  allProducts[previousImgs[1]].percentage += 1;
   allProducts[previousImgs[1]].views += 1;
-  previousShown.push(allProducts[previousImgs[1]].views += 1);
-  percentageData.push(allProducts[previousImgs[1]]);
+  // console.log(allProducts[previousImgs[1]].percentage);
+  // allProducts[previousImgs[1]].avgClicks();
+  // console.log(allProducts[previousImgs[1]].percentage);
+  // previousShown.push(allProducts[previousImgs[1]].views += 1);
+  // percentageData.push(allProducts[previousImgs[1]]);
   centerImg.setAttribute('src',[allProducts[previousImgs[1]].path]);
   centerImg.setAttribute('alt',[allProducts[previousImgs[1]].name]);
   picContainer.appendChild(centerImg);
   //right img
   var rightImg = document.createElement('img');
-  allProducts[previousImgs[2]].percentage += 1;
   allProducts[previousImgs[2]].views += 1;
-  previousShown.push(allProducts[previousImgs[2]].views += 1);
-  percentageData.push(allProducts[previousImgs[2]]);
+    // console.log(allProducts[previousImgs[2]].percentage);
+    // allProducts[previousImgs[2]].avgClicks();
+    // console.log(allProducts[previousImgs[2]].percentage);
+    // previousShown.push(allProducts[previousImgs[2]].views += 1);
+    // percentageData.push(allProducts[previousImgs[2]]);
   rightImg.setAttribute('src',[allProducts[previousImgs[2]].path]);
   rightImg.setAttribute('alt',[allProducts[previousImgs[2]].name]);
   picContainer.appendChild(rightImg);
@@ -130,7 +144,7 @@ function generateImg(){
 }
 // return previousImgs;
 
-createProducts();
+// createProducts();
 generateImg();
 
 //on-click listener
