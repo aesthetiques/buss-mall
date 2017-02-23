@@ -48,11 +48,6 @@ Product.prototype.avgClicks = function(){
 };
 
 // Create all products and push them to their array
-if(JSON.parse(localStorage.allProducts)){
-  allProducts = JSON.parse(localStorage.allProducts);
-}else{
-  createProducts();
-}
 
 function createProducts(){
   for(var i = 0; i < productNames.length; i++){
@@ -62,6 +57,11 @@ function createProducts(){
   }
 }
 
+if(localStorage.allProducts){
+  allProducts = JSON.parse(localStorage.allProducts);
+}else{
+  createProducts();
+}
 //
 //
 
