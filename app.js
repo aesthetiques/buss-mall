@@ -9,11 +9,6 @@ var right = document.getElementById('right');
 var listResults = document.getElementById('list');
 
 var allProducts = [];
-  // './img/bag.jpg', './img/banana.jpg', './img/bathroom.jpg', './img/boots.jpg',
-  // './img/breakfast.jpg', './img/tauntaun.jpg', './img/wine-glass.jpg', './img/bubblegum.jpg',
-  // './img/chair.jpg', './img/cthulhu.jpg', './img/dog-duck.jpg', './img/dragon.jpg', './img/unicorn.jpg',
-  // './img/usb.gif', './img/pen.jpg', './img/pet-sweep.jpg', './img/scissors.jpg', './img/shark.jpg',
-  // './img/sweep.png', './img/water-can.jpg'];
 var totalClicks = 0;
 var maxClicks = 25;
 var previousImgs = [];
@@ -110,33 +105,18 @@ function generateImg(){
   console.log(previousImgs);
   var leftImg = document.createElement('img');
   allProducts[previousImgs[0]].views += 1;
-  // console.log(allProducts[previousImgs[0]]);
-  // allProducts[previousImgs[0]].avgClicks();
-  // console.log(allProducts[previousImgs[0]].percentage);
-  // previousShown.push(allProducts[previousImgs[0]].views += 1);
-  // percentageData.push(allProducts[previousImgs[0]]);
   leftImg.setAttribute('src',[allProducts[previousImgs[0]].path]);
   leftImg.setAttribute('alt',[allProducts[previousImgs[0]].name]);
   picContainer.appendChild(leftImg);
   //center img
   var centerImg = document.createElement('img');
   allProducts[previousImgs[1]].views += 1;
-  // console.log(allProducts[previousImgs[1]].percentage);
-  // allProducts[previousImgs[1]].avgClicks();
-  // console.log(allProducts[previousImgs[1]].percentage);
-  // previousShown.push(allProducts[previousImgs[1]].views += 1);
-  // percentageData.push(allProducts[previousImgs[1]]);
   centerImg.setAttribute('src',[allProducts[previousImgs[1]].path]);
   centerImg.setAttribute('alt',[allProducts[previousImgs[1]].name]);
   picContainer.appendChild(centerImg);
   //right img
   var rightImg = document.createElement('img');
   allProducts[previousImgs[2]].views += 1;
-    // console.log(allProducts[previousImgs[2]].percentage);
-    // allProducts[previousImgs[2]].avgClicks();
-    // console.log(allProducts[previousImgs[2]].percentage);
-    // previousShown.push(allProducts[previousImgs[2]].views += 1);
-    // percentageData.push(allProducts[previousImgs[2]]);
   rightImg.setAttribute('src',[allProducts[previousImgs[2]].path]);
   rightImg.setAttribute('alt',[allProducts[previousImgs[2]].name]);
   picContainer.appendChild(rightImg);
@@ -188,18 +168,3 @@ function handlePicturesOnClick(event){
   }
   generateImg();
 }
-
-//GET THESE RESULTS INTO A FUNCTION TO DELETE EVENT LISTENER AND APPENT LI ELEMENTS TO THE UL I MADE
-// function createList(){
-// for(var q = 0; q < allProducts.length; q++){
-// if(totalClicks < maxClicks){
-//     var objectsToPrint = allProducts[q];
-//     var objectsToPrintToo = document.createElement('li');
-//     objectsToPrintToo.textContent = objectsToPrint + ': ' + objectsToPrint.clicks;
-//     listResults.appendChild(objectsToPrintToo);
-//     console.log(objectsToPrint);
-//   }
-// } else{
-//   picContainer.removeEventListener('click', handlePicturesOnClick);
-// }
-// }
